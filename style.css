@@ -1,0 +1,280 @@
+* {
+	position: relative;
+	color: inherit;
+	font-size: inherit;
+	font-family: inherit;
+	padding: 0px;
+	margin: 0px;
+	border: none;
+	box-sizing: border-box;
+}
+html {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+body {
+	height: 100%;
+	width: 100%;
+	background-color: #333;
+	margin: 0px;
+	overflow: hidden;
+}
+.no-select {
+	-webkit-user-select: none;
+}
+.ease {
+	transition: 0.1s ease-out;
+}
+.pointer {
+	cursor: pointer;
+}
+.sh-10 {
+	box-shadow: 0px 10px 10px -0px rgba(0,0,0,1);
+}
+.sh-10:active {
+	box-shadow: 0px 0px 5px -0px rgba(0,0,0,1);
+}
+.appframe {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	background: black;
+	font-family: Calibri;
+}
+.appframe .viewport {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+.appframe .viewport .frame {
+	width: 100%;
+	height: 100%;
+	border: none;
+	background: white;
+}
+.appframe > .menu {
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	height: 300px;
+	width: 300px;
+	background-color: #ccc;
+	box-shadow: 0px 0px 20px -10px black;
+}
+.appframe > .menu > .grabber {
+	position: absolute;
+	top: -10px;
+	left: -10px;
+	height: 20px;
+	width: 20px;
+	border-radius: 20px;
+	background-color: red;
+	opacity: 0;
+	cursor: move;
+}
+.appframe > .menu:hover > .grabber {
+}
+.appframe > .menu > .grabber:hover {
+}
+.appframe > .menu > .resizer {
+	position: absolute;
+	bottom: -10px;
+	right: -10px;
+	height: 20px;
+	width: 20px;
+	border-radius: 20px;
+	background-color: red;
+	opacity: 0;
+	cursor: se-resize;
+}
+.appframe > .menu:hover > .resizer {
+}
+.appframe > .menu > .resizer:hover {
+}
+.appframe > .menu .tree-container {
+	width: 100%;
+	height: calc( 100% - 0px );
+	overflow: hidden;
+}
+.appframe > .menu .tree-container .menu {
+	width: 100%;
+	font-size: 30px;
+	height: 1em;
+} 
+.appframe > .menu .tree-container .button {
+	float: left;
+	font-size: 1em;
+	line-height: 1em;
+	width: 1em;
+	height: 1em;
+	text-align: center;
+	color: black;
+	cursor: pointer;
+} 
+.appframe > .menu .tree-container .button:hover {
+	color: white;
+}
+.appframe > .menu .tree-view {
+	top: 0px;
+	width: 100%;
+}
+.appframe > .menu .tree-view .tree-item {
+	/*height: 1em;*/
+	line-height: 1em;
+	font-size: 1em;
+	padding: 0.25em 0 0 1em;
+	overflow: hidden;
+	position: relative;
+}
+.appframe > .menu .tree-view .tree-item:before {
+	content: '';
+	display: block;
+	position: absolute;
+	height: calc(100% - 1.75em);
+	top: 1.25em;
+	left: 1.5em;
+	border-left: 1px dotted black;
+}
+.appframe > .menu .tree-view .tree-item:after {
+	content: '';
+	display: block;
+	position: absolute;
+	width: 0.5em;
+	top: 0.75em;
+	left: 0.5em;
+	border-bottom: 1px dotted black;
+}
+.appframe > .menu .tree-view .controls {
+	font-size: 1em;
+	font-family: Calibri, sans-serif;
+	line-height: 1.5em;
+}
+.appframe > .menu .tree-view .tree-item .btn-container {
+	display: inline-block;
+	position: absolute;
+	height: 1em;
+}
+.appframe > .menu .tree-view .tree-item .hover-hidden {
+	position: absolute;
+	width: 1em;
+	height: 1em;
+	opacity: 0;
+	margin: 0 0 0 0.5em;
+}
+.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(1) {
+	left: 0em;
+}
+.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(2) {
+	left: 1.5em;
+}
+.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(3) {
+	left: 3em;
+}
+.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(4) {
+	left: 4.5em;
+}
+.appframe > .menu .tree-view .tree-item:hover > .btn-container .hover-hidden {
+	opacity: 0.5;
+}
+.appframe > .menu .tree-view .tree-item:hover > .btn-container .hover-hidden:hover {
+	opacity: 1;
+}
+.appframe > .menu .tree-view .tree-item .tree-item-variable {
+	/*height: 1em;*/
+	display: inline-block;
+	background: transparent;
+	line-height: 1em;
+	font-size: 1em;
+	padding: 0.25em 0 0 1em;
+	overflow: hidden;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+/*
+
+.appframe #viewport-menu {
+	width: 100%;
+	height: 100%;
+}
+*/
+
+
+.modal-layer {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+	height: 0px;
+	/*pointer-events: none;*/
+}
+.modal-layer > .window-modal {
+	display: block;
+	position: absolute;
+	box-shadow: 0px 5px 10px -5px black;
+	padding: 10px;
+	background: gray;
+}
+
+.controls .block {
+	position: relative;
+	width: 100%;
+	padding: 0 0 0 0.5em;
+	overflow: hidden;
+}
+.controls .block .block {
+	float: left;
+	width: auto;
+}
+.controls .title {
+	margin: 0px;
+}
+.controls .folder {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 1em;
+	height: 1em;
+	background-color: black;
+	font-weight: 900;
+	text-align: center;
+	line-height: 1em;
+	font-size: 1em;
+	border-radius: 1em;
+	padding: 0px;
+	margin: 0.25em;
+	cursor: pointer;
+	color: white;
+}
+.controls .wrapper {
+}
+.controls input {
+	border: 1px solid black;
+	height: 1.25em;
+	padding: 0;
+	vertical-align: top;
+}
+.controls select {
+	border: 1px solid black;
+	height: 1.25em;
+	padding: 0;
+	vertical-align: top;
+}
+.controls .05c {
+	width: 12%;
+}
+.controls .1c {
+	width: 24%;
+}
+.controls .2c {
+	width: 49%;
+}
