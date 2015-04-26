@@ -1,4 +1,3 @@
-var _proc, _ctrl, _wndw, _styl, _node, _appc, _page;
 var CONTROL_BLOCK_HEIGHT_FOLDED = '1.5em';
 var DRAG_TYPE_GRABBER = 0;
 var DRAG_TYPE_RESIZER = 1;
@@ -8,7 +7,7 @@ var behavior_types = {
 
 	'folder': { 'evt': { 'click' : 'foldProcessor' }, 'state': { 'folded': true } },
 
-	'window': { 'evt': { 'mousedown' : 'tofrontProcessor' }, 'state': { } },
+	'window': { 'evt': { 'mousedown' : 'windowProcessor' }, 'state': { } },
 
 	'scrollable': { 'evt': { 'mousewheel' : 'scrollProcessor' }, 'state': { } },
 

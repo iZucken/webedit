@@ -1,5 +1,4 @@
-
-_ctrl = constructClass( _ctrl, function ( definition ) {
+var _ctrl = constructClass( _ctrl, function ( definition ) {
 	args = args || {};
 	var parent = definition.parent;
 

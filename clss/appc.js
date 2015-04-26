@@ -1,15 +1,13 @@
-_appc = constructClass( _appc, function ( definition ) {
-	var
-		mainLayer = definition.mainLayer,
-		modalLayer = definition.modalLayer
-	;
+var _appc = constructClass( _appc, function ( definition ) {
+	var	mainLayer = definition.mainLayer;
+	var modalLayer = definition.modalLayer;
 	this.mainLayer = mainLayer;
 	this.modalLayer = modalLayer;
-	this.last = this;
-	this.current = this;
+	_appc.last = this;
+	_appc.current = this;
 }, {
-	current : null,
 	last: null,
+	current : null,
 	load: function () {
 		var s = window.localStorage, x = [].slice.call( getByClass( document, 'svst' ) ), r = {};
 		if ( s['menu-prefs'] ) {

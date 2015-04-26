@@ -1,5 +1,4 @@
-
-_node = constructClass ( _node, function ( args ) {
+var _node = constructClass ( _node, function ( args ) {
 	args = args || {};
 	var styler = args.style || _styl.current || {};
 	var parent = args.parent || {};

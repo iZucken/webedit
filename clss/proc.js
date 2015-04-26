@@ -1,4 +1,4 @@
-_proc = constructClass ( _proc, function ( definition ) {
+var _proc = constructClass ( _proc, function ( definition ) {
 }, {
 	drags: null,
 	lastx: null,
@@ -11,7 +11,7 @@ _proc = constructClass ( _proc, function ( definition ) {
 		this.dragged = false;
 		_proc.drags = null;
 	},
-	tofrontProcessor: function ( e ) {
+	windowProcessor: function ( e ) {
 		this.parentNode.appendChild( this );
 	},
 	scrollProcessor: function ( e ) {
@@ -98,6 +98,7 @@ _proc = constructClass ( _proc, function ( definition ) {
 	},
 
 	styleRenamer: function () {
+		var pos = this.getBoundingClientRect();
 		var comp = this.compositor;
 		var e = New({
 					type: 'input',
@@ -108,14 +109,14 @@ _proc = constructClass ( _proc, function ( definition ) {
 					type: 'form',
 					prop: { compositor: comp, valuer: e },
 					b: [ 'styleRenamerSubmit' ],
-					ch: [				
-					],
+					ch: [ e ],
 				});
 		new _wndw({
-			pos: { x: _proc.lastx, y: _proc.lasty },
+			pos: { x: pos.left, y: pos.top },
 			ch: [ f ],
+			type: WINDOW_TYPE_MODAL,
 		});
-		e1.focus();
+		e.focus();
 	},
 	styleNameSubmitter: function ( e ) {
 		e.preventDefault();

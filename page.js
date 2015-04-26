@@ -97,11 +97,25 @@ var addControl = function ( group, name, config ) {
 document.body.appendChild( New({
 	id: 'appframe',
 	c: 'appframe',
-	childs: [
-		New({
-			id: 'viewport-menu',
-			c: 'menu no-select svst',
-			childs: [
+}) );
+document.body.appendChild(
+	New({
+		id: 'modal-layer',
+		c: 'modal-layer',
+		childs: [],
+	})
+);
+
+document.onmousemove = _proc.mouseMoveProcessor;
+
+editor = getById( document, 'controls' );
+
+var App = new _appc({
+	mainLayer: new _layr({ node: getById( document, 'appframe' ) }),
+	modalLayer: new _layr({ node: getById( document, 'modal-layer' ) }),
+});
+
+new _wndw({ id: 'viewport-menu', ch: [
 				New({
 					id: 'viewport',
 					c: 'viewport',
@@ -113,15 +127,9 @@ document.body.appendChild( New({
 						}),
 					],
 				}),
-				New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }),
-				New({ id: '', c:'resizer no-select ease', behave: [ 'window-resizer' ] }),
 			],
-		}),
-		New({
-			id: 'nodes-menu',
-			c: 'menu no-select svst',
-			childs: [
-				
+		});
+new _wndw({ id: 'nodes-menu', ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -144,15 +152,8 @@ document.body.appendChild( New({
 						}),
 					]
 				}),
-				New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }),
-				New({ id: '', c:'resizer no-select ease', behave: [ 'window-resizer' ] }),
-			],
-			behave: [ 'window' ]
-		}),
-		New({
-			id: 'styles-menu',
-			c: 'menu no-select svst',
-			childs: [
+			] });
+new _wndw({ id: 'styles-menu', ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -184,15 +185,8 @@ document.body.appendChild( New({
 						}),
 					]
 				}),
-				New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }),
-				New({ id: '', c:'resizer no-select ease', behave: [ 'window-resizer' ] }),
-			],
-			behave: [ 'window' ]
-		}),
-		New({
-			id: 'edit-menu',
-			c: 'menu no-select svst',
-			childs: [
+			] });
+new _wndw({ id: 'edit-menu', ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -221,31 +215,7 @@ document.body.appendChild( New({
 						}),
 					]
 				}),
-				New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }),
-				New({ id: '', c:'resizer no-select ease', behave: [ 'window-resizer' ] }),
-			],
-			behave: [ 'window' ]
-		}),
-	],
-}) );
-document.body.appendChild(
-	New({
-		id: 'modal-layer',
-		c: 'modal-layer',
-		childs: [],
-	})
-);
-
-window.onload = _appc.load;
-window.onbeforeunload = _appc.save;
-document.onmousemove = _proc.mouseMoveProcessor;
-
-editor = getById( document, 'controls' );
-
-var App = new _appc({
-	mainLayer: new _layr({ node: getById( document, 'appframe' ) }),
-	modalLayer: new _layr({ node: getById( document, 'modal-layer' ) }),
-});
+			], });
 
 idoc = getById( document, 'viewportframe' ).contentDocument;
 
@@ -261,3 +231,7 @@ _styl.current.change( DEFAULT_STYLE );
 _node.setParentDocs( idoc, document );
 _node.setParents( idoc.body, getById( document, 'nodes-tree-root' ) );
 new _node();
+
+
+window.onload = _appc.load;
+window.onbeforeunload = _appc.save;

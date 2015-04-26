@@ -55,7 +55,7 @@ body {
 	border: none;
 	background: white;
 }
-.appframe > .menu {
+.appframe > .window {
 	top: 0px;
 	left: 0px;
 	position: absolute;
@@ -64,7 +64,7 @@ body {
 	background-color: #ccc;
 	box-shadow: 0px 0px 20px -10px black;
 }
-.appframe > .menu > .grabber {
+.appframe > .window > .grabber {
 	position: absolute;
 	top: -10px;
 	left: -10px;
@@ -75,11 +75,11 @@ body {
 	opacity: 0;
 	cursor: move;
 }
-.appframe > .menu:hover > .grabber {
+.appframe > .window:hover > .grabber {
 }
-.appframe > .menu > .grabber:hover {
+.appframe > .window > .grabber:hover {
 }
-.appframe > .menu > .resizer {
+.appframe > .window > .resizer {
 	position: absolute;
 	bottom: -10px;
 	right: -10px;
@@ -90,21 +90,21 @@ body {
 	opacity: 0;
 	cursor: se-resize;
 }
-.appframe > .menu:hover > .resizer {
+.appframe > .window:hover > .resizer {
 }
-.appframe > .menu > .resizer:hover {
+.appframe > .window > .resizer:hover {
 }
-.appframe > .menu .tree-container {
+.appframe > .window .tree-container {
 	width: 100%;
 	height: calc( 100% - 0px );
 	overflow: hidden;
 }
-.appframe > .menu .tree-container .menu {
+.appframe > .window .tree-container .window {
 	width: 100%;
 	font-size: 30px;
 	height: 1em;
 } 
-.appframe > .menu .tree-container .button {
+.appframe > .window .tree-container .button {
 	float: left;
 	font-size: 1em;
 	line-height: 1em;
@@ -114,14 +114,14 @@ body {
 	color: black;
 	cursor: pointer;
 } 
-.appframe > .menu .tree-container .button:hover {
+.appframe > .window .tree-container .button:hover {
 	color: white;
 }
-.appframe > .menu .tree-view {
+.appframe > .window .tree-view {
 	top: 0px;
 	width: 100%;
 }
-.appframe > .menu .tree-view .tree-item {
+.appframe > .window .tree-view .tree-item {
 	/*height: 1em;*/
 	line-height: 1em;
 	font-size: 1em;
@@ -129,7 +129,7 @@ body {
 	overflow: hidden;
 	position: relative;
 }
-.appframe > .menu .tree-view .tree-item:before {
+.appframe > .window .tree-view .tree-item:before {
 	content: '';
 	display: block;
 	position: absolute;
@@ -138,7 +138,7 @@ body {
 	left: 1.5em;
 	border-left: 1px dotted black;
 }
-.appframe > .menu .tree-view .tree-item:after {
+.appframe > .window .tree-view .tree-item:after {
 	content: '';
 	display: block;
 	position: absolute;
@@ -147,42 +147,42 @@ body {
 	left: 0.5em;
 	border-bottom: 1px dotted black;
 }
-.appframe > .menu .tree-view .controls {
+.appframe > .window .tree-view .controls {
 	font-size: 1em;
 	font-family: Calibri, sans-serif;
 	line-height: 1.5em;
 }
-.appframe > .menu .tree-view .tree-item .btn-container {
+.appframe > .window .tree-view .tree-item .btn-container {
 	display: inline-block;
 	position: absolute;
 	height: 1em;
 }
-.appframe > .menu .tree-view .tree-item .hover-hidden {
+.appframe > .window .tree-view .tree-item .hover-hidden {
 	position: absolute;
 	width: 1em;
 	height: 1em;
 	opacity: 0;
 	margin: 0 0 0 0.5em;
 }
-.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(1) {
+.appframe > .window .tree-view .tree-item .hover-hidden:nth-child(1) {
 	left: 0em;
 }
-.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(2) {
+.appframe > .window .tree-view .tree-item .hover-hidden:nth-child(2) {
 	left: 1.5em;
 }
-.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(3) {
+.appframe > .window .tree-view .tree-item .hover-hidden:nth-child(3) {
 	left: 3em;
 }
-.appframe > .menu .tree-view .tree-item .hover-hidden:nth-child(4) {
+.appframe > .window .tree-view .tree-item .hover-hidden:nth-child(4) {
 	left: 4.5em;
 }
-.appframe > .menu .tree-view .tree-item:hover > .btn-container .hover-hidden {
+.appframe > .window .tree-view .tree-item:hover > .btn-container .hover-hidden {
 	opacity: 0.5;
 }
-.appframe > .menu .tree-view .tree-item:hover > .btn-container .hover-hidden:hover {
+.appframe > .window .tree-view .tree-item:hover > .btn-container .hover-hidden:hover {
 	opacity: 1;
 }
-.appframe > .menu .tree-view .tree-item .tree-item-variable {
+.appframe > .window .tree-view .tree-item .tree-item-variable {
 	/*height: 1em;*/
 	display: inline-block;
 	background: transparent;

@@ -23,19 +23,7 @@ var New = function ( arg ) {
 		}
 	}
 	if ( behavior ) {
-		for ( var b_type in behavior ) {
-			var b_type_s = behavior[b_type];
-			if ( behavior_types[b_type_s] ) {
-				for ( var b in behavior_types[ b_type_s ]['evt'] ) {
-					addEvent( e, b, _proc[ behavior_types[ b_type_s ]['evt'][b] ] );
-				}
-				for ( var s in behavior_types[ b_type_s ]['state'] ) {
-					e[s] = behavior_types[ b_type_s ]['state'][s];
-				}
-			} else {
-				console.warn( 'No such (' + ( b_type_s || 'empty' ) + ') behaviour for ' + ( id || name || text || className || 0 ) + '!' );
-			}
-		}
+		setBehavior( e, behavior );
 	}
 	if ( childs ) {
 		for ( var i = 0; i < childs.length; i++ ) {
@@ -64,6 +52,22 @@ var constructClass = function ( name, definition, properties ) {
 	}
 	name.prototype = name;
 	return name;
+};
+
+var setBehavior = function ( element, behavior ) {
+	for ( var b_type in behavior ) {
+		var b_type_s = behavior[b_type];
+		if ( behavior_types[b_type_s] ) {
+			for ( var b in behavior_types[ b_type_s ]['evt'] ) {
+				addEvent( element, b, _proc[ behavior_types[ b_type_s ]['evt'][b] ] );
+			}
+			for ( var s in behavior_types[ b_type_s ]['state'] ) {
+				element[s] = behavior_types[ b_type_s ]['state'][s];
+			}
+		} else {
+			console.warn( 'No such (' + ( b_type_s || 'empty' ) + ') behaviour for ' + ( id || name || text || className || 0 ) + '!' );
+		}
+	}
 };
 
 var isDOMNode = function ( arg ) {
