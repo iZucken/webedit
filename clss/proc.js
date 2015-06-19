@@ -4,15 +4,19 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	lastx: null,
 	lasty: null,
 	grabProcessor: function ( e ) {
-		this.dragged = true;
-		_proc.drags = this;
+		this.parentNode.window.layer.pickedElement = this.parentNode.window;
 	},
 	releaseProcessor: function ( e ) {
-		this.dragged = false;
-		_proc.drags = null;
+		//this.dragged = false;
+		//_proc.drags = null;
+		//this.parentNode.layer.pickedElement = this;
 	},
 	windowProcessor: function ( e ) {
-		this.parentNode.appendChild( this );
+		var w = this.window;
+		var z = w.layer.topmost.node.style.zIndex;
+		w.layer.topmost.node.style.zIndex = this.style.zIndex;
+		this.style.zIndex = z;
+		w.layer.topmost = this.window;
 	},
 	scrollProcessor: function ( e ) {
 		var d = e.wheelDelta;
@@ -40,6 +44,40 @@ var _proc = constructClass ( _proc, function ( definition ) {
 			}
 		}
 	},
+	mupOverLayer: function ( e ) {
+		var x = this.lastPos.x;
+		var y = this.lastPos.y;
+		console.log( this.pickedElement );
+		this.pickedElement = null;
+		if ( e ) {
+			if ( e.draggableType == DRAG_TYPE_GRABBER ) {
+				e.parentNode.style.top = Math.floor( Y / 8 ) * 8;
+				e.parentNode.style.left = Math.floor( X / 8 ) * 8;
+			}
+			if ( e.draggableType == DRAG_TYPE_RESIZER ) {
+				e.parentNode.style.width = Math.floor( ( X - parseInt( e.parentNode.style.left ) ) / 8 ) * 8;
+				e.parentNode.style.height = Math.floor( ( Y - parseInt( e.parentNode.style.top ) ) / 8 ) * 8;
+			}
+		}
+	},
+	mmoveOverLayer: function ( e ) {
+		var X = e.x;
+		var Y = e.y;
+		var x = this.lastPos.x;
+		var y = this.lastPos.y;
+		var e = this.pickedElement;
+		if ( e ) {
+			if ( e.draggableType == DRAG_TYPE_GRABBER ) {
+				e.parentNode.style.top = Math.floor( Y / 8 ) * 8;
+				e.parentNode.style.left = Math.floor( X / 8 ) * 8;
+			}
+			if ( e.draggableType == DRAG_TYPE_RESIZER ) {
+				e.parentNode.style.width = Math.floor( ( X - parseInt( e.parentNode.style.left ) ) / 8 ) * 8;
+				e.parentNode.style.height = Math.floor( ( Y - parseInt( e.parentNode.style.top ) ) / 8 ) * 8;
+			}
+		}
+	},
+
 	editableProcessor: function (  ) {
 		if ( current == this ) {
 			if ( this.parentNode.nodeName == 'BODY' ) {

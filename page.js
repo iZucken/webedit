@@ -102,7 +102,6 @@ document.body.appendChild(
 	New({
 		id: 'modal-layer',
 		c: 'modal-layer',
-		childs: [],
 	})
 );
 
@@ -115,7 +114,7 @@ var App = new _appc({
 	modalLayer: new _layr({ node: getById( document, 'modal-layer' ) }),
 });
 
-new _wndw({ id: 'viewport-menu', ch: [
+new _wndw({ id: 'viewport-menu', layer: _appc.current.mainLayer, ch: [
 				New({
 					id: 'viewport',
 					c: 'viewport',
@@ -129,7 +128,7 @@ new _wndw({ id: 'viewport-menu', ch: [
 				}),
 			],
 		});
-new _wndw({ id: 'nodes-menu', ch: [
+new _wndw({ id: 'nodes-menu', layer: _appc.current.mainLayer, ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -153,7 +152,7 @@ new _wndw({ id: 'nodes-menu', ch: [
 					]
 				}),
 			] });
-new _wndw({ id: 'styles-menu', ch: [
+new _wndw({ id: 'styles-menu', layer: _appc.current.mainLayer, ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -186,7 +185,7 @@ new _wndw({ id: 'styles-menu', ch: [
 					]
 				}),
 			] });
-new _wndw({ id: 'edit-menu', ch: [
+new _wndw({ id: 'edit-menu', layer: _appc.current.mainLayer, ch: [
 				New({
 					id: '',
 					c:'tree-container',
@@ -216,6 +215,8 @@ new _wndw({ id: 'edit-menu', ch: [
 					]
 				}),
 			], });
+
+
 
 idoc = getById( document, 'viewportframe' ).contentDocument;
 

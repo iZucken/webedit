@@ -51,6 +51,18 @@ var behavior_types = {
 	
 	'destroyContainer': { 'evt': { 'click' : 'containerDestroyer' }, 'state': { } },
 
+	'layer': {
+		'evt': {
+			// 'mousedown': 'mdownOverLayer',
+			'mouseup': 'mupOverLayer',
+			'mousemove': 'mmoveOverLayer',
+		},
+		'state': {
+			'lastPos': { x: 0, y: 0 },
+			'pickedElement': null,
+		}
+	},
+
 }
 var controls_config = {
 	'pos & display' : {

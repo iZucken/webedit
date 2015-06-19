@@ -5,23 +5,23 @@ var _wndw = constructClass( _wndw, function ( definition ) {
 	var type = definition.type;
 	var layer = definition.layer;
 	var id = definition.id || null;
+	childs.push( New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }) );
 	childs.push( New({ id: '', c:'resizer no-select ease', behave: [ 'window-resizer' ] }) );
-	childs.unshift( New({ id: '', c:'grabber no-select ease', behave: [ 'window-grabber' ] }) );
 	var e = New({
 		id: id,
 		c: type == WINDOW_TYPE_MODAL ? 'window-modal no-select svst' : 'window no-select svst',
 		t: text,
-		p: type == WINDOW_TYPE_MODAL ? _appc.current.modalLayer.node : _appc.current.mainLayer.node,
+		p: !!layer ? layer.node : type == WINDOW_TYPE_MODAL ? _appc.current.modalLayer.node : _appc.current.mainLayer.node,
 		s: type == WINDOW_TYPE_MODAL ? ( 'top:'+pos.y+';left:'+pos.x ) : null,
 		ch: childs,
 		behave: [ 'window' ]
 	});
+	this.node = e;
+	layer.windows.push( this );
+	e.style.zIndex = layer.windows.length;
+	layer.topmost = this;
+	e.window = this;
+	e.window.layer = !!layer ? layer : type == WINDOW_TYPE_MODAL ? _appc.current.modalLayer : _appc.current.mainLayer;
 }, {
 	last: null,
-	setLayer: function ( arg ) {
-		this.layer = arg;
-	},
-	setModalLayer: function ( arg ) {
-		this.modalLayer = arg;
-	},
 });
