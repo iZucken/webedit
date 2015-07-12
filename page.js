@@ -11,7 +11,7 @@ var addGroup = function ( name ) {
 			New( {
 				type: 'div',
 				c: 'folder',
-				text: '-',
+				text: '+',
 				behave: [ 'folder' ],
 			} ),
 		],
@@ -36,14 +36,16 @@ var formControlNodes = function ( arg ) {
 			wrapper.appendChild( New({ c: 'wrapper', ch: [ input ] }) );
 			break;
 		case 'units':
-			select = New({ type: 'select', c: 'control', id: name+'-control', b: [ 'editController' ], ch: [
+			select = New({ type: 'select', c: 'control', id: name+'-control', b: [ 'editController' ],
+				ch: [
 					New({ type: 'option', val: '', text: '' }),
 					New({ type: 'option', val: 'auto', text: 'auto' }),
 					New({ type: 'option', val: 'px', text: 'px' }),
 					New({ type: 'option', val: 'em', text: 'em' }),
 					New({ type: 'option', val: 'pt', text: 'pt' }),
 					New({ type: 'option', val: '%', text: '%' }),
-				] });
+				]
+			});
 			select.property = gname;
 			input = New( { type: 'input', c: 'control', id: name+'-control', b: [ 'editController' ] } );
 			input.type = 'number';
@@ -94,10 +96,12 @@ var addControl = function ( group, name, config ) {
 	return wrapper;
 };
 
-document.body.appendChild( New({
-	id: 'appframe',
-	c: 'appframe',
-}) );
+document.body.appendChild(
+	New({
+		id: 'appframe',
+		c: 'appframe',
+	})
+);
 document.body.appendChild(
 	New({
 		id: 'modal-layer',
@@ -114,123 +118,139 @@ var App = new _appc({
 	modalLayer: new _layr({ node: getById( document, 'modal-layer' ) }),
 });
 
-new _wndw({ id: 'viewport-menu', layer: _appc.current.mainLayer, ch: [
+new _wndw({
+	id: 'viewport-menu',
+	layer: _appc.current.mainLayer,
+	ch: [
+		New({
+			id: 'viewport',
+			c: 'viewport',
+			childs: [
 				New({
-					id: 'viewport',
-					c: 'viewport',
-					childs: [
-						New({
-							type: 'iframe',
-							id: 'viewportframe',
-							c: 'frame',
-						}),
-					],
+					id: 'viewportframe',
+					c: 'frame',
 				}),
 			],
-		});
-new _wndw({ id: 'nodes-menu', layer: _appc.current.mainLayer, ch: [
+		}),
+	],
+});
+new _wndw({
+	id: 'nodes-menu',
+	layer: _appc.current.mainLayer,
+	ch: [
+		New({
+			id: '',
+			c:'tree-container',
+			childs: [
 				New({
-					id: '',
-					c:'tree-container',
+					id: 'nodes-tree',
+					c:'tree-view ease',
 					childs: [
 						New({
-							id: 'nodes-tree',
-							c:'tree-view ease',
-							childs: [
-								New({
-									id: 'nodes-tree-root',
-									c: 'tree-item',
-									t: 'body',
-									behave: [  ],
-									ch: [
-										New({ c: 'btn-container', ch: [ New({ type: 'span', c: 'fa fa-file-o hover-hidden ease pointer', b: [ 'addNodeButton' ] }), ] }),
-									],
-								}),
+							id: 'nodes-tree-root',
+							c: 'tree-item',
+							t: 'body',
+							behave: [  ],
+							ch: [
+								New({ c: 'btn-container', ch: [ New({ type: 'span', c: 'fa fa-file-o hover-hidden ease pointer', b: [ 'addNodeButton' ] }), ] }),
 							],
-							behave: [ 'scrollable' ],
 						}),
-					]
+					],
+					behave: [ 'scrollable' ],
 				}),
-			] });
-new _wndw({ id: 'styles-menu', layer: _appc.current.mainLayer, ch: [
+			]
+		}),
+	]
+});
+new _wndw({
+	id: 'styles-menu',
+	layer: _appc.current.mainLayer,
+	ch: [
+		New({
+			id: '',
+			c:'tree-container',
+			childs: [
 				New({
-					id: '',
-					c:'tree-container',
+					id: 'styles-tree',
+					c:'tree-view ease',
 					childs: [
 						New({
-							id: 'styles-tree',
-							c:'tree-view ease',
-							childs: [
+							id: 'styles-tree-root',
+							c: 'tree-item',
+							t: 'root',
+							behave: [  ],
+							ch: [
 								New({
-									id: 'styles-tree-root',
-									c: 'tree-item',
-									t: 'root',
-									behave: [  ],
+									c: 'btn-container',
 									ch: [
 										New({
-											c: 'btn-container',
-											ch: [
-												New({
-													type: 'span',
-													c: 'fa fa-file-o hover-hidden ease pointer',
-													b: [ 'addStyleButton' ]
-												}),
-											]
+											type: 'span',
+											c: 'fa fa-file-o hover-hidden ease pointer',
+											b: [ 'addStyleButton' ]
 										}),
-									],
+									]
 								}),
 							],
-							behave: [ 'scrollable' ],
 						}),
-					]
+					],
+					behave: [ 'scrollable' ],
 				}),
-			] });
-new _wndw({ id: 'edit-menu', layer: _appc.current.mainLayer, ch: [
+			]
+		}),
+	]
+});
+new _wndw({
+	id: 'edit-menu',
+	layer: _appc.current.mainLayer,
+	ch: [
+		New({
+			id: '',
+			c:'tree-container',
+			childs: [
 				New({
 					id: '',
-					c:'tree-container',
+					c:'tree-view ease',
 					childs: [
 						New({
-							id: '',
-							c:'tree-view ease',
-							childs: [
-								New({
-									id: 'controls',
-									c: 'container controls',
-									childs: function () {
-										var groupNodes = [];
-										for ( var group in controls_config ) {
-											var groupNode = addGroup( group );
-											for ( var control in controls_config[group] ) {
-												addControl( groupNode, control, controls_config[group][control] );
-											}
-											groupNodes.push( groupNode );
-										}
-										return groupNodes;
-									}.call(),
-								}),
-							],
-							behave: [ 'scrollable' ],
+							id: 'controls',
+							c: 'container controls',
+							childs: function () {
+								var groupNodes = [];
+								for ( var group in controls_config ) {
+									var groupNode = addGroup( group );
+									for ( var control in controls_config[group] ) {
+										addControl( groupNode, control, controls_config[group][control] );
+									}
+									groupNodes.push( groupNode );
+								}
+								return groupNodes;
+							}.call(),
 						}),
-					]
+					],
+					behave: [ 'scrollable' ],
 				}),
-			], });
+			]
+		}),
+	],
+});
 
 
-
+/*
 idoc = getById( document, 'viewportframe' ).contentDocument;
 
 idoc.onmouseenter = function() {
 	idoc.onmousemove = _proc.mouseMoveProcessor;
 };
+*/
 
-_styl.setParentDocs( idoc, document );
-_styl.setParents( idoc.head, getById( document, 'styles-tree-root' ) );
+//_styl.setParentDocs( idoc, document );
+_styl.setParents( document.head, getByIdD( 'styles-tree-root' ) );
 new _styl();
 _styl.current.change( DEFAULT_STYLE );
 
-_node.setParentDocs( idoc, document );
-_node.setParents( idoc.body, getById( document, 'nodes-tree-root' ) );
+
+//_node.setParentDocs( idoc, document );
+_node.setParents( getByIdD( 'viewportframe' ), getByIdD( 'nodes-tree-root' ) );
 new _node();
 
 

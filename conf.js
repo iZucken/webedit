@@ -12,18 +12,18 @@ var behavior_types = {
 	'scrollable': { 'evt': { 'mousewheel' : 'scrollProcessor' }, 'state': { } },
 
 	'window-grabber': {
-		'evt': { 'mousedown' : 'grabProcessor', 'mouseup' : 'releaseProcessor' },
-		'state': { 'draggableType': DRAG_TYPE_GRABBER } },
+		'evt': {  },
+		'state': { 'draggableType': DRAG_TYPE_GRABBER, 'pickable': true } },
 	'window-resizer': {
-		'evt': { 'mousedown' : 'grabProcessor', 'mouseup' : 'releaseProcessor' },
-		'state': { 'draggableType': DRAG_TYPE_RESIZER } },
+		'evt': {  },
+		'state': { 'draggableType': DRAG_TYPE_RESIZER, 'pickable': true } },
 
 	'mouseMoveDetector': {
 		'evt': { 'mousemove' : 'mouseMoveProcessor' },
 		'state': { } },
 
 	'editController': {
-		'evt': { 'change' : 'controlProcessor', 'click' : 'controlProcessor' },
+		'evt': { 'change' : 'controlProcessor', 'input' : 'controlProcessor', 'click' : 'controlProcessor' },
 		'state': { } },
 
 	'addNodeButton': { 'evt': { 'click' : 'nodeAddictor' }, 'state': { } },
@@ -53,7 +53,7 @@ var behavior_types = {
 
 	'layer': {
 		'evt': {
-			// 'mousedown': 'mdownOverLayer',
+			'mousedown': 'mdownOverLayer',
 			'mouseup': 'mupOverLayer',
 			'mousemove': 'mmoveOverLayer',
 		},

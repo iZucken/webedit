@@ -5,20 +5,30 @@ var _styl = constructClass ( _styl, function ( definition ) {
 
 	this.style = e;
 
+	_styl.numOfStyles++;
+
 	var name = definition.name || 'default';
 
-	e = New({ doc: this.parentDocOfDisplayNodes, id: name+'-style-node', p: this.parentOfDisplayNodes, type: 'style', c: name })
+	e = New({
+		// doc: this.parentDocOfDisplayNodes,
+		id: name+'-style-node',
+		p: this.parentOfDisplayNodes,
+		type: 'style',
+		c: 'style_n_'+_styl.numOfStyles
+	})
 	e.compositor = this;
 	this.display = e;
 
+	var title = New({ c: 'title pointer', t: name });
+
 	e = New({
-		doc: this.parentDocOfControlNodes,
+		// doc: this.parentDocOfControlNodes,
 		p: parent.control || this.parentOfControlNodes,
 		id: name+'-style-tree-item',
 		b: [ 'styleTreeItem' ],
-		t: name,
 		c: 'tree-item',
 		ch: [
+			title,
 			New({
 				c: 'btn-container',
 				ch: [
@@ -32,19 +42,23 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	})
 	e.compositor = this;
 	this.control = e;
+	this.title = title;
 
 	this.Name = name;
 	_styl.current = this;
 }, {
 	parentOfDisplayNodes: null,
 	parentOfControlNodes: null,
-	parentDocOfDisplayNodes: null,
-	parentDocOfControlNodes: null,
+	// parentDocOfDisplayNodes: null,
+	// parentDocOfControlNodes: null,
 	current: null,
+	numOfStyles: 0,
+	/*
 	setParentDocs: function ( parentOfDisplayNodes, parentOfControlNodes ) {
 		this.parentDocOfDisplayNodes = parentOfDisplayNodes || this.parentDocOfDisplayNodes;
 		this.parentDocOfControlNodes = parentOfControlNodes || this.parentDocOfControlNodes;
 	},
+	*/
 	setParents: function ( parentOfDisplayNodes, parentOfControlNodes ) {
 		this.parentOfDisplayNodes = parentOfDisplayNodes || this.parentOfDisplayNodes;
 		this.parentOfControlNodes = parentOfControlNodes || this.parentOfControlNodes;
@@ -54,8 +68,7 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	},
 	setName: function ( name ) {
 		this.Name = name;
-		this.display.className = name;
-		console.log(this.control.childNodes[0]);
-		this.control.childNodes[0].textContent = name;
+		//this.display.className = name;
+		this.title.textContent = name;
 	},
 } );

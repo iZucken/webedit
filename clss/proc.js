@@ -3,14 +3,6 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	drags: null,
 	lastx: null,
 	lasty: null,
-	grabProcessor: function ( e ) {
-		this.parentNode.window.layer.pickedElement = this.parentNode.window;
-	},
-	releaseProcessor: function ( e ) {
-		//this.dragged = false;
-		//_proc.drags = null;
-		//this.parentNode.layer.pickedElement = this;
-	},
 	windowProcessor: function ( e ) {
 		var w = this.window;
 		var z = w.layer.topmost.node.style.zIndex;
@@ -28,7 +20,7 @@ var _proc = constructClass ( _proc, function ( definition ) {
 		this.style.top = Math.min( -0, Math.max( -h + ph + 0, top + d ) );
 	},
 	mouseMoveProcessor: function ( e ) {
-		var dragx = e.x;
+		/*var dragx = e.x;
 		var dragy = e.y;
 		_proc.lastx = dragx;
 		_proc.lasty = dragy;
@@ -42,29 +34,24 @@ var _proc = constructClass ( _proc, function ( definition ) {
 				drags.parentNode.style.width = Math.floor( ( dragx - parseInt( drags.parentNode.style.left ) ) / 8 ) * 8;
 				drags.parentNode.style.height = Math.floor( ( dragy - parseInt( drags.parentNode.style.top ) ) / 8 ) * 8;
 			}
+		}*/
+	},
+	mdownOverLayer: function ( e ) {
+		if ( e.target.pickable ) {
+			this.pickedElement = e.target;
 		}
 	},
 	mupOverLayer: function ( e ) {
-		var x = this.lastPos.x;
-		var y = this.lastPos.y;
-		console.log( this.pickedElement );
 		this.pickedElement = null;
-		if ( e ) {
-			if ( e.draggableType == DRAG_TYPE_GRABBER ) {
-				e.parentNode.style.top = Math.floor( Y / 8 ) * 8;
-				e.parentNode.style.left = Math.floor( X / 8 ) * 8;
-			}
-			if ( e.draggableType == DRAG_TYPE_RESIZER ) {
-				e.parentNode.style.width = Math.floor( ( X - parseInt( e.parentNode.style.left ) ) / 8 ) * 8;
-				e.parentNode.style.height = Math.floor( ( Y - parseInt( e.parentNode.style.top ) ) / 8 ) * 8;
-			}
-		}
 	},
 	mmoveOverLayer: function ( e ) {
-		var X = e.x;
-		var Y = e.y;
+		var i;
+		var X = e.clientX;
+		var Y = e.clientY;
 		var x = this.lastPos.x;
 		var y = this.lastPos.y;
+		this.lastPos.x = X;
+		this.lastPos.y = Y;
 		var e = this.pickedElement;
 		if ( e ) {
 			if ( e.draggableType == DRAG_TYPE_GRABBER ) {
@@ -72,8 +59,8 @@ var _proc = constructClass ( _proc, function ( definition ) {
 				e.parentNode.style.left = Math.floor( X / 8 ) * 8;
 			}
 			if ( e.draggableType == DRAG_TYPE_RESIZER ) {
-				e.parentNode.style.width = Math.floor( ( X - parseInt( e.parentNode.style.left ) ) / 8 ) * 8;
-				e.parentNode.style.height = Math.floor( ( Y - parseInt( e.parentNode.style.top ) ) / 8 ) * 8;
+				e.parentNode.style.width = ( i = Math.floor( ( X - parseInt( e.parentNode.style.left ) ) / 8 ) * 8 ) ? i : 8;
+				e.parentNode.style.height = ( i = Math.floor( ( Y - parseInt( e.parentNode.style.top ) ) / 8 ) * 8 ) ? i : 8;
 			}
 		}
 	},
@@ -107,11 +94,11 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	foldProcessor: function (  ) {
 		if ( this.folded ) {
 			this.parentNode.style.height = 'auto';
-			this.textContent = '+';
+			this.textContent = '-';
 			this.folded = false;
 		} else {
 			this.parentNode.style.height = CONTROL_BLOCK_HEIGHT_FOLDED;
-			this.textContent = '-';
+			this.textContent = '+';
 			this.folded = true;
 		}
 	},
@@ -153,6 +140,7 @@ var _proc = constructClass ( _proc, function ( definition ) {
 			pos: { x: pos.left, y: pos.top },
 			ch: [ f ],
 			type: WINDOW_TYPE_MODAL,
+			layer: App.modalLayer,
 		});
 		e.focus();
 	},

@@ -43,6 +43,10 @@ var getById = function ( ) { return arguments[0].getElementById( arguments[1] ) 
 
 var getByClass = function ( ) { return arguments[0].getElementsByClassName( arguments[1] ); };
 
+var getByIdD = function ( ) { return document.getElementById( arguments[0] ) };
+
+var getByClassD = function ( ) { return document.getElementsByClassName( arguments[0] ); };
+
 var addEvent = function ( ) { arguments[0].addEventListener( arguments[1], arguments[2] ); return arguments[0] };
 
 var constructClass = function ( name, definition, properties ) {
