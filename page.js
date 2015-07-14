@@ -200,6 +200,43 @@ new _wndw({
 	]
 });
 new _wndw({
+	id: 'hierarchy-menu',
+	layer: _appc.current.mainLayer,
+	ch: [
+		New({
+			id: '',
+			c:'tree-container',
+			childs: [
+				New({
+					id: 'hierarchy-tree',
+					c:'tree-view ease',
+					childs: [
+						New({
+							id: 'hierarchy-tree-root',
+							c: 'tree-item',
+							t: 'root',
+							behave: [  ],
+							/*ch: [
+								New({
+									c: 'btn-container',
+									ch: [
+										New({
+											type: 'span',
+											c: 'fa fa-file-o hover-hidden ease pointer',
+											b: [ 'addStyleButton' ]
+										}),
+									]
+								}),
+							],*/
+						}),
+					],
+					behave: [ 'scrollable' ],
+				}),
+			]
+		}),
+	]
+});
+new _wndw({
 	id: 'edit-menu',
 	layer: _appc.current.mainLayer,
 	ch: [
@@ -247,6 +284,11 @@ idoc.onmouseenter = function() {
 _styl.setParents( document.head, getByIdD( 'styles-tree-root' ) );
 new _styl();
 _styl.current.change( DEFAULT_STYLE );
+
+
+
+_hier.setParents( document.head, getByIdD( 'hierarchy-tree-root' ) );
+new _hier();
 
 
 //_node.setParentDocs( idoc, document );
