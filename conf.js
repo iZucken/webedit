@@ -3,6 +3,9 @@ var DRAG_TYPE_GRABBER = 0;
 var DRAG_TYPE_RESIZER = 1;
 var WINDOW_TYPE_MODAL = 1;
 var DEFAULT_STYLE = '{ border: 1px solid black; padding: 10px; margin: 10px; display: inline-block; }';
+
+
+
 var behavior_types = {
 
 	'folder': { 'evt': { 'click' : 'foldProcessor' }, 'state': { 'folded': true } },
@@ -35,6 +38,15 @@ var behavior_types = {
 		'mousedown' : 'grabNodeItem',
 	}, 'state': { } },
 
+	'listTreeItem': {
+		'evt': {
+			'mousedown': 'listTreeItemPickup',
+			'mousedown': 'listTreeItemDrop',
+			'mousemove': 'listTreeItemHover',
+		},
+		'state': { 'parental': false },
+	},
+
 	'addStyleButton': { 'evt': { 'click' : 'styleAddictor' }, 'state': { } },
 	'duplicateStyleButton': { 'evt': { 'click' : 'styleDuplicator' }, 'state': { } },
 	'renameStyleButton': { 'evt': { 'click' : 'styleRenamer' }, 'state': { } },
@@ -64,6 +76,12 @@ var behavior_types = {
 	},
 
 }
+
+
+
+
+
+
 var controls_config = {
 	'pos & display' : {
 		'top': {

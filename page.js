@@ -111,11 +111,11 @@ document.body.appendChild(
 
 document.onmousemove = _proc.mouseMoveProcessor;
 
-editor = getById( document, 'controls' );
+editor = getByIdD( 'controls' );
 
 var App = new _appc({
-	mainLayer: new _layr({ node: getById( document, 'appframe' ) }),
-	modalLayer: new _layr({ node: getById( document, 'modal-layer' ) }),
+	mainLayer: new _layr({ node: getByIdD( 'appframe' ) }),
+	modalLayer: new _layr({ node: getByIdD( 'modal-layer' ) }),
 });
 
 new _wndw({
@@ -177,7 +177,7 @@ new _wndw({
 						New({
 							id: 'styles-tree-root',
 							c: 'tree-item',
-							t: 'root',
+							t: 'classes',
 							behave: [  ],
 							ch: [
 								New({
@@ -214,7 +214,7 @@ new _wndw({
 						New({
 							id: 'hierarchy-tree-root',
 							c: 'tree-item',
-							t: 'root',
+							t: 'styles',
 							behave: [  ],
 							/*ch: [
 								New({
@@ -271,30 +271,15 @@ new _wndw({
 	],
 });
 
-
-/*
-idoc = getById( document, 'viewportframe' ).contentDocument;
-
-idoc.onmouseenter = function() {
-	idoc.onmousemove = _proc.mouseMoveProcessor;
-};
-*/
-
-//_styl.setParentDocs( idoc, document );
 _styl.setParents( document.head, getByIdD( 'styles-tree-root' ) );
 new _styl();
 _styl.current.change( DEFAULT_STYLE );
 
-
-
 _hier.setParents( document.head, getByIdD( 'hierarchy-tree-root' ) );
 new _hier();
 
-
-//_node.setParentDocs( idoc, document );
 _node.setParents( getByIdD( 'viewportframe' ), getByIdD( 'nodes-tree-root' ) );
 new _node();
-
 
 window.onload = _appc.load;
 window.onbeforeunload = _appc.save;

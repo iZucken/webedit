@@ -4,7 +4,6 @@ var _node = constructClass ( _node, function ( args ) {
 	var parent = args.parent || {};
 
 	var e = New({
-		// doc: this.parentDocOfDisplayNodes,
 		t: 'Node',
 		p: parent.display || this.parentOfDisplayNodes,
 		b: [ 'nodeDisplay' ],
@@ -13,7 +12,6 @@ var _node = constructClass ( _node, function ( args ) {
 	this.display = e;
 
 	var e = New({
-		// doc: this.parentDocOfControlNodes,
 		t: 'Node',
 		p: parent.control || this.parentOfControlNodes,
 		b: [ 'nodeTreeItem' ],
@@ -37,15 +35,7 @@ var _node = constructClass ( _node, function ( args ) {
 }, {
 	parentOfDisplayNodes: null,
 	parentOfControlNodes: null,
-	// parentDocOfDisplayNodes: null,
-	// parentDocOfControlNodes: null,
 	current: null,
-	/*
-	setParentDocs: function ( parentOfDisplayNodes, parentOfControlNodes ) {
-		this.parentDocOfDisplayNodes = parentOfDisplayNodes || this.parentDocOfDisplayNodes;
-		this.parentDocOfControlNodes = parentOfControlNodes || this.parentDocOfControlNodes;
-	},
-	*/
 	setParents: function ( parentOfDisplayNodes, parentOfControlNodes ) {
 		this.parentOfDisplayNodes = parentOfDisplayNodes || this.parentOfDisplayNodes;
 		this.parentOfControlNodes = parentOfControlNodes || this.parentOfControlNodes;

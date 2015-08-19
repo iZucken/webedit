@@ -10,7 +10,6 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	var name = definition.name || 'default';
 
 	e = New({
-		// doc: this.parentDocOfDisplayNodes,
 		id: name+'-style-node',
 		p: this.parentOfDisplayNodes,
 		type: 'style',
@@ -22,7 +21,6 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	var title = New({ c: 'title pointer', t: name });
 
 	e = New({
-		// doc: this.parentDocOfControlNodes,
 		p: parent.control || this.parentOfControlNodes,
 		id: name+'-style-tree-item',
 		b: [ 'styleTreeItem' ],
@@ -40,6 +38,7 @@ var _styl = constructClass ( _styl, function ( definition ) {
 			}),
 		]
 	})
+
 	e.compositor = this;
 	this.control = e;
 	this.title = title;
@@ -49,16 +48,8 @@ var _styl = constructClass ( _styl, function ( definition ) {
 }, {
 	parentOfDisplayNodes: null,
 	parentOfControlNodes: null,
-	// parentDocOfDisplayNodes: null,
-	// parentDocOfControlNodes: null,
 	current: null,
 	numOfStyles: 0,
-	/*
-	setParentDocs: function ( parentOfDisplayNodes, parentOfControlNodes ) {
-		this.parentDocOfDisplayNodes = parentOfDisplayNodes || this.parentDocOfDisplayNodes;
-		this.parentDocOfControlNodes = parentOfControlNodes || this.parentDocOfControlNodes;
-	},
-	*/
 	setParents: function ( parentOfDisplayNodes, parentOfControlNodes ) {
 		this.parentOfDisplayNodes = parentOfDisplayNodes || this.parentOfDisplayNodes;
 		this.parentOfControlNodes = parentOfControlNodes || this.parentOfControlNodes;
@@ -68,7 +59,6 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	},
 	setName: function ( name ) {
 		this.Name = name;
-		//this.display.className = name;
 		this.title.textContent = name;
 	},
 } );

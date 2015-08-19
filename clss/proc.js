@@ -20,21 +20,6 @@ var _proc = constructClass ( _proc, function ( definition ) {
 		this.style.top = Math.min( -0, Math.max( -h + ph + 0, top + d ) );
 	},
 	mouseMoveProcessor: function ( e ) {
-		/*var dragx = e.x;
-		var dragy = e.y;
-		_proc.lastx = dragx;
-		_proc.lasty = dragy;
-		drags = _proc.drags;
-		if ( drags ) {
-			if ( drags.draggableType == DRAG_TYPE_GRABBER ) {
-				drags.parentNode.style.top = Math.floor( dragy / 8 ) * 8;
-				drags.parentNode.style.left = Math.floor( dragx / 8 ) * 8;
-			}
-			if ( drags.draggableType == DRAG_TYPE_RESIZER ) {
-				drags.parentNode.style.width = Math.floor( ( dragx - parseInt( drags.parentNode.style.left ) ) / 8 ) * 8;
-				drags.parentNode.style.height = Math.floor( ( dragy - parseInt( drags.parentNode.style.top ) ) / 8 ) * 8;
-			}
-		}*/
 	},
 	mdownOverLayer: function ( e ) {
 		if ( e.target.pickable ) {
@@ -119,6 +104,7 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	styleAddictor: function () {
 		new _styl({ parent: this.compositor || null });
 	},
+	
 	styleDuplicator: function () {
 	},
 

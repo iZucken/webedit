@@ -9,7 +9,7 @@ var _appc = constructClass( _appc, function ( definition ) {
 	last: null,
 	current : null,
 	load: function () {
-		var s = window.localStorage, x = [].slice.call( getByClass( document, 'svst' ) ), r = {};
+		var s = window.localStorage, x = [].slice.call( getByClassD( 'svst' ) ), r = {};
 		if ( s['menu-prefs'] ) {
 			r = JSON.parse( s['menu-prefs'] );
 			for ( e in x ) {
@@ -21,7 +21,7 @@ var _appc = constructClass( _appc, function ( definition ) {
 		}
 	},
 	save: function () {
-		var s = window.localStorage, x = [].slice.call( getByClass( document, 'svst' ) ), r = {};
+		var s = window.localStorage, x = [].slice.call( getByClassD( 'svst' ) ), r = {};
 		for ( e in x ) {
 			r[ x[e].id ] = {};
 			r[ x[e].id ].x = x[e].style.top;
