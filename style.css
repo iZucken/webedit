@@ -21,6 +21,8 @@ body {
 	overflow: hidden;
 }
 .no-select {
+	user-select: none;
+	-moz-user-select: none;
 	-webkit-user-select: none;
 }
 .ease {
