@@ -1,10 +1,10 @@
-var _layr = constructClass( _layr, function ( definition ) {
+var Layer = constructClass( Layer, function ( definition ) {
 	var node = definition.node || null;
 	if ( isDOM( definition.node ) ) { this.node = definition.node } else { console.warn('Node specified is not a DOM object'); }
 	this.windows = [];
 	setBehavior( node, [ 'layer' ] );
 	this.topmost = null;
-	_layr.last = this;
+	Layer.last = this;
 }, {
 	last: null,
 	addWindow: function ( arg ) {

@@ -1,4 +1,4 @@
-var _ctrl = constructClass( _ctrl, function ( definition ) {
+var Controller = constructClass( Controller, function ( definition ) {
 	args = args || {};
 	var parent = definition.parent;
 
@@ -19,7 +19,7 @@ var _ctrl = constructClass( _ctrl, function ( definition ) {
 	e.compositor = this;
 	this.control = e;
 
-	_node.current = this;
+	Node.current = this;
 
 }, {
 	last: null,

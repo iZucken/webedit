@@ -1,4 +1,4 @@
-var _hier = constructClass( _hier, function ( definition ) {
+var Hierarchy = constructClass( Hierarchy, function ( definition ) {
 	var def = definition || null;
 	
 }, {

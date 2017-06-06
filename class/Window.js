@@ -1,4 +1,4 @@
-var _wndw = constructClass( _wndw, function ( definition ) {
+var Window = constructClass( Window, function ( definition ) {
 	var pos = definition.position || definition.pos || definition.p;
 	var text = definition.text || definition.t;
 	var childs = definition.childs || definition.ch;
@@ -11,7 +11,7 @@ var _wndw = constructClass( _wndw, function ( definition ) {
 		id: id,
 		c: type == WINDOW_TYPE_MODAL ? 'window-modal no-select svst' : 'window no-select svst',
 		t: text,
-		p: !!layer ? layer.node : type == WINDOW_TYPE_MODAL ? _appc.current.modalLayer.node : _appc.current.mainLayer.node,
+		p: !!layer ? layer.node : type == WINDOW_TYPE_MODAL ? Application.current.modalLayer.node : Application.current.mainLayer.node,
 		s: type == WINDOW_TYPE_MODAL ? ( 'top:'+pos.y+';left:'+pos.x ) : null,
 		ch: childs,
 		behave: [ 'window' ]
@@ -21,7 +21,7 @@ var _wndw = constructClass( _wndw, function ( definition ) {
 	e.style.zIndex = layer.windows.length;
 	layer.topmost = this;
 	e.window = this;
-	e.window.layer = !!layer ? layer : type == WINDOW_TYPE_MODAL ? _appc.current.modalLayer : _appc.current.mainLayer;
+	e.window.layer = !!layer ? layer : type == WINDOW_TYPE_MODAL ? Application.current.modalLayer : Application.current.mainLayer;
 }, {
 	last: null,
 });

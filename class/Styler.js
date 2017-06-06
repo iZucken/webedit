@@ -1,11 +1,11 @@
-var _styl = constructClass ( _styl, function ( definition ) {
+var Styler = constructClass ( Styler, function ( definition ) {
 	definition = definition || {};
 	var e = {};
 	var parent = definition.parent || {};
 
 	this.style = e;
 
-	_styl.numOfStyles++;
+	Styler.numOfStyles++;
 
 	var name = definition.name || 'default';
 
@@ -13,7 +13,7 @@ var _styl = constructClass ( _styl, function ( definition ) {
 		id: name+'-style-node',
 		p: this.parentOfDisplayNodes,
 		type: 'style',
-		c: 'style_n_'+_styl.numOfStyles
+		c: 'style_n_'+Styler.numOfStyles
 	})
 	e.compositor = this;
 	this.display = e;
@@ -44,7 +44,7 @@ var _styl = constructClass ( _styl, function ( definition ) {
 	this.title = title;
 
 	this.Name = name;
-	_styl.current = this;
+	Styler.current = this;
 }, {
 	parentOfDisplayNodes: null,
 	parentOfControlNodes: null,

@@ -1,4 +1,4 @@
-var _proc = constructClass ( _proc, function ( definition ) {
+var Processor = constructClass ( Processor, function ( definition ) {
 }, {
 	drags: null,
 	lastx: null,
@@ -74,7 +74,7 @@ var _proc = constructClass ( _proc, function ( definition ) {
 		}
 		s += "}";
 		console.info( s );
-		_styl.current.change( s );
+		Styler.current.change( s );
 	},
 	foldProcessor: function (  ) {
 		if ( this.folded ) {
@@ -89,20 +89,20 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	},
 	setCurrentStyleItem: function () {
 		console.log( this.compositor );
-		_styl.current = this.compositor;
+		Styler.current = this.compositor;
 	},
 	setCurrentNodeItem: function () {
-		_node.current = this.compositor;
+		Node.current = this.compositor;
 	},
 	nodeAddictor: function () {
-		new _node({ parent: this.compositor || null });
+		new Node({ parent: this.compositor || null });
 	},
 	nodeDuplicator: function () {
 	},
 	nodeRemover: function () {
 	},
 	styleAddictor: function () {
-		new _styl({ parent: this.compositor || null });
+		new Styler({ parent: this.compositor || null });
 	},
 	
 	styleDuplicator: function () {
@@ -122,7 +122,7 @@ var _proc = constructClass ( _proc, function ( definition ) {
 					b: [ 'styleRenamerSubmit' ],
 					ch: [ e ],
 				});
-		new _wndw({
+		new Window({
 			pos: { x: pos.left, y: pos.top },
 			ch: [ f ],
 			type: WINDOW_TYPE_MODAL,
@@ -139,22 +139,22 @@ var _proc = constructClass ( _proc, function ( definition ) {
 	styleRemover: function () {
 	},
 	releaseAboveNodeItem: function ( e ) {
-		var drags = _proc.drags || null;
+		var drags = Processor.drags || null;
 		if ( drags ) {
 			console.log( this.compositor );
 			this.compositor.setStyler( drags );
 			drags = null;
 		}
-		_proc.drags = null;
+		Processor.drags = null;
 	},
 	grabNodeItem: function ( e ) {
-		_proc.drags = this;
+		Processor.drags = this;
 	},
 	releaseAboveStyleItem: function ( e ) {
-		_proc.drags = null;
+		Processor.drags = null;
 	},
 	grabStyleItem: function ( e ) {
-		_proc.drags = this.compositor;
+		Processor.drags = this.compositor;
 	},
 	containerDestroyer: function ( e ) {
 		this.parentNode.remove();

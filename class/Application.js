@@ -1,10 +1,10 @@
-var _appc = constructClass( _appc, function ( definition ) {
+var Application = constructClass( Application, function ( definition ) {
 	var	mainLayer = definition.mainLayer;
 	var modalLayer = definition.modalLayer;
 	this.mainLayer = mainLayer;
 	this.modalLayer = modalLayer;
-	_appc.last = this;
-	_appc.current = this;
+	Application.last = this;
+	Application.current = this;
 }, {
 	last: null,
 	current : null,
