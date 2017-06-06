@@ -109,18 +109,18 @@ document.body.appendChild(
 	})
 );
 
-document.onmousemove = _proc.mouseMoveProcessor;
+document.onmousemove = Processor.mouseMoveProcessor;
 
 editor = getByIdD( 'controls' );
 
-var App = new _appc({
-	mainLayer: new _layr({ node: getByIdD( 'appframe' ) }),
-	modalLayer: new _layr({ node: getByIdD( 'modal-layer' ) }),
+var App = new Application({
+	mainLayer: new Layer({ node: getByIdD( 'appframe' ) }),
+	modalLayer: new Layer({ node: getByIdD( 'modal-layer' ) }),
 });
 
-new _wndw({
+new Window({
 	id: 'viewport-menu',
-	layer: _appc.current.mainLayer,
+	layer: Application.current.mainLayer,
 	ch: [
 		New({
 			id: 'viewport',
@@ -134,9 +134,9 @@ new _wndw({
 		}),
 	],
 });
-new _wndw({
+new Window({
 	id: 'nodes-menu',
-	layer: _appc.current.mainLayer,
+	layer: Application.current.mainLayer,
 	ch: [
 		New({
 			id: '',
@@ -162,9 +162,9 @@ new _wndw({
 		}),
 	]
 });
-new _wndw({
+new Window({
 	id: 'styles-menu',
-	layer: _appc.current.mainLayer,
+	layer: Application.current.mainLayer,
 	ch: [
 		New({
 			id: '',
@@ -199,9 +199,9 @@ new _wndw({
 		}),
 	]
 });
-new _wndw({
+new Window({
 	id: 'hierarchy-menu',
-	layer: _appc.current.mainLayer,
+	layer: Application.current.mainLayer,
 	ch: [
 		New({
 			id: '',
@@ -236,9 +236,9 @@ new _wndw({
 		}),
 	]
 });
-new _wndw({
+new Window({
 	id: 'edit-menu',
-	layer: _appc.current.mainLayer,
+	layer: Application.current.mainLayer,
 	ch: [
 		New({
 			id: '',
@@ -271,15 +271,15 @@ new _wndw({
 	],
 });
 
-_styl.setParents( document.head, getByIdD( 'styles-tree-root' ) );
-new _styl();
-_styl.current.change( DEFAULT_STYLE );
+Styler.setParents( document.head, getByIdD( 'styles-tree-root' ) );
+new Styler();
+Styler.current.change( DEFAULT_STYLE );
 
-_hier.setParents( document.head, getByIdD( 'hierarchy-tree-root' ) );
-new _hier();
+Hierarchy.setParents( document.head, getByIdD( 'hierarchy-tree-root' ) );
+new Hierarchy();
 
-_node.setParents( getByIdD( 'viewportframe' ), getByIdD( 'nodes-tree-root' ) );
-new _node();
+Node.setParents( getByIdD( 'viewportframe' ), getByIdD( 'nodes-tree-root' ) );
+new Node();
 
-window.onload = _appc.load;
-window.onbeforeunload = _appc.save;
+window.onload = Application.load;
+window.onbeforeunload = Application.save;

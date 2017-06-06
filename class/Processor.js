@@ -49,7 +49,6 @@ var Processor = constructClass ( Processor, function ( definition ) {
 			}
 		}
 	},
-
 	editableProcessor: function (  ) {
 		if ( current == this ) {
 			if ( this.parentNode.nodeName == 'BODY' ) {
@@ -104,10 +103,8 @@ var Processor = constructClass ( Processor, function ( definition ) {
 	styleAddictor: function () {
 		new Styler({ parent: this.compositor || null });
 	},
-	
 	styleDuplicator: function () {
 	},
-
 	styleRenamer: function () {
 		var pos = this.getBoundingClientRect();
 		var comp = this.compositor;
@@ -135,7 +132,6 @@ var Processor = constructClass ( Processor, function ( definition ) {
 		this.compositor.setName( this.valuer.value );
 		this.parentNode.remove();
 	},
-
 	styleRemover: function () {
 	},
 	releaseAboveNodeItem: function ( e ) {

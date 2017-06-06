@@ -1,13 +1,18 @@
-var Application = constructClass( Application, function ( definition ) {
+var Application = function ( definition ) {
 	var	mainLayer = definition.mainLayer;
 	var modalLayer = definition.modalLayer;
 	this.mainLayer = mainLayer;
 	this.modalLayer = modalLayer;
 	Application.last = this;
 	Application.current = this;
-}, {
+};
+
+Application.extend({
 	last: null,
-	current : null,
+	current: null
+});
+
+Application.prototype.extend({
 	load: function () {
 		var s = window.localStorage, x = [].slice.call( getByClassD( 'svst' ) ), r = {};
 		if ( s['menu-prefs'] ) {
@@ -30,5 +35,5 @@ var Application = constructClass( Application, function ( definition ) {
 			r[ x[e].id ].h = x[e].style.height;
 		}
 		s['menu-prefs'] = JSON.stringify( r );
-	},
+	}
 });

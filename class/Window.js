@@ -1,5 +1,5 @@
 var Window = constructClass( Window, function ( definition ) {
-	var pos = definition.position || definition.pos || definition.p;
+	var pos = definition.position || definition.pos || definition.p || { x: 0, y: 0 };
 	var text = definition.text || definition.t;
 	var childs = definition.childs || definition.ch;
 	var type = definition.type;
