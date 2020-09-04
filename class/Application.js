@@ -13,11 +13,16 @@ Application.extend({
 });
 
 Application.prototype.extend({
-	load: function () {
-		var s = window.localStorage, x = [].slice.call( getByClassD( 'svst' ) ), r = {};
-		if ( s['menu-prefs'] ) {
-			r = JSON.parse( s['menu-prefs'] );
-			for ( e in x ) {
+	saveAbleElements () {
+		return [].slice.call( byClass( 'svst' ) );
+	},
+	load () {
+		let r = {};
+		let x = this.saveAbleElements();
+		let item = localStorage.getItem('menu-prefs');
+		if ( item ) {
+			r = JSON.parse( item );
+			for ( let e in x ) {
 				x[e].style.top = r[ x[e].id ].x;
 				x[e].style.left = r[ x[e].id ].y;
 				x[e].style.width = r[ x[e].id ].w;
@@ -25,15 +30,16 @@ Application.prototype.extend({
 			}
 		}
 	},
-	save: function () {
-		var s = window.localStorage, x = [].slice.call( getByClassD( 'svst' ) ), r = {};
-		for ( e in x ) {
+	save () {
+		let r = {};
+		let x = this.saveAbleElements();
+		for ( let e in x ) {
 			r[ x[e].id ] = {};
 			r[ x[e].id ].x = x[e].style.top;
 			r[ x[e].id ].y = x[e].style.left;
 			r[ x[e].id ].w = x[e].style.width;
 			r[ x[e].id ].h = x[e].style.height;
 		}
-		s['menu-prefs'] = JSON.stringify( r );
+		localStorage.setItem('menu-prefs',JSON.stringify( r ));
 	}
 });

@@ -39,13 +39,21 @@ var New = function ( arg ) {
 	return e;
 };
 
-var getById = function ( ) { return arguments[0].getElementById( arguments[1] ) };
+var byId = function (arg, el ) {
+	if (el && arg) {
+		return el.getElementById( arg )
+	} else {
+		return document.getElementById( arg )
+	}
+};
 
-var getByClass = function ( ) { return arguments[0].getElementsByClassName( arguments[1] ); };
-
-var getByIdD = function ( ) { return document.getElementById( arguments[0] ) };
-
-var getByClassD = function ( ) { return document.getElementsByClassName( arguments[0] ); };
+var byClass = function (arg, el ) {
+	if (el && arg) {
+		return el.getElementsByClassName( arg )
+	} else {
+		return document.getElementsByClassName( arg )
+	}
+};
 
 var addEvent = function ( ) { arguments[0].addEventListener( arguments[1], arguments[2] ); return arguments[0] };
 

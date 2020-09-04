@@ -63,7 +63,7 @@ var Processor = constructClass ( Processor, function ( definition ) {
 		var s = "{";
 		var p = this.parentNode;
 		s += this.property + ":";
-		var ctrl = getByClass( p, 'control' );
+		var ctrl = byClass( 'control', p );
 		for ( i = 0; i < ctrl.length; i++ ) {
 			if ( ctrl[i].getAttribute( 'margin' ) == 'y' ) {
 				s += " "+ctrl[i].value;

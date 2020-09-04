@@ -111,14 +111,14 @@ document.body.appendChild(
 
 document.onmousemove = Processor.mouseMoveProcessor;
 
-editor = getByIdD( 'controls' );
+editor = byId( 'controls' );
 
 var App = new Application({
-	mainLayer: new Layer({ node: getByIdD( 'appframe' ) }),
-	modalLayer: new Layer({ node: getByIdD( 'modal-layer' ) }),
+	mainLayer: new Layer({ node: byId( 'appframe' ) }),
+	modalLayer: new Layer({ node: byId( 'modal-layer' ) }),
 });
 
-new Window({
+new WindowPanel({
 	id: 'viewport-menu',
 	layer: Application.current.mainLayer,
 	ch: [
@@ -134,7 +134,7 @@ new Window({
 		}),
 	],
 });
-new Window({
+new WindowPanel({
 	id: 'nodes-menu',
 	layer: Application.current.mainLayer,
 	ch: [
@@ -162,7 +162,7 @@ new Window({
 		}),
 	]
 });
-new Window({
+new WindowPanel({
 	id: 'styles-menu',
 	layer: Application.current.mainLayer,
 	ch: [
@@ -199,7 +199,7 @@ new Window({
 		}),
 	]
 });
-new Window({
+new WindowPanel({
 	id: 'hierarchy-menu',
 	layer: Application.current.mainLayer,
 	ch: [
@@ -236,7 +236,7 @@ new Window({
 		}),
 	]
 });
-new Window({
+new WindowPanel({
 	id: 'edit-menu',
 	layer: Application.current.mainLayer,
 	ch: [
@@ -271,15 +271,19 @@ new Window({
 	],
 });
 
-Styler.setParents( document.head, getByIdD( 'styles-tree-root' ) );
+Styler.setParents( document.head, byId( 'styles-tree-root' ) );
 new Styler();
 Styler.current.change( DEFAULT_STYLE );
 
-Hierarchy.setParents( document.head, getByIdD( 'hierarchy-tree-root' ) );
+Hierarchy.setParents( document.head, byId( 'hierarchy-tree-root' ) );
 new Hierarchy();
 
-Node.setParents( getByIdD( 'viewportframe' ), getByIdD( 'nodes-tree-root' ) );
+Node.setParents( byId( 'viewportframe' ), byId( 'nodes-tree-root' ) );
 new Node();
 
-window.onload = Application.load;
-window.onbeforeunload = Application.save;
+window.onload = function (e) {
+	App.load();
+};
+window.onbeforeunload = function (e) {
+	App.save();
+};
